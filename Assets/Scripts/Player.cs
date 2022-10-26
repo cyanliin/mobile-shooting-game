@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     private CharacterController controller;
 
+    private GameObject focusEnemy;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -21,6 +23,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // 找到最近的一個目標 Enemy 的物件
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+
+        float miniDist = 9999;
+        foreach (GameObject enemy in enemys)
+        {
+            // 計算距離
+            float d = Vector3.Distance(transform.position, enemy.transform.position);
+
+            // 跟上一個最近的比較，有比較小就記錄下來
+            if (d < miniDist)
+            {
+                miniDist = d;
+                focusEnemy = enemy;
+            }
+        }
+
+
+
         // 取得方向鍵輸入
         // float h = Input.GetAxis("Horizontal");
         // float v = Input.GetAxis("Vertical");
@@ -42,6 +63,15 @@ public class Player : MonoBehaviour
             // 使用 Lerp 漸漸轉向
             Quaternion targetRotation = Quaternion.Euler(0, faceAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.3f);
+        }
+        else
+        {
+            // 沒有移動輸入，並且有鎖定的敵人，漸漸面向敵人
+            if (focusEnemy)
+            {
+                var targetRotation = Quaternion.LookRotation(focusEnemy.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20 * Time.deltaTime);
+            }
         }
 
         // 地心引力 (y)
@@ -68,35 +98,6 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            // 找到最近的一個目標
-            // 取得所有場上 tag 為 Enemy 的物件
-            /*
-            GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-
-            float miniDist = 9999;
-            GameObject miniEnemys = null;
-
-            foreach (GameObject enemy in enemys)
-            {
-                // 計算距離
-                float d = Vector3.Distance(transform.position, enemy.transform.position);
-
-                // 跟上一個最近的比較，有比較小就記錄下來
-                if (d < miniDist)
-                {
-                    miniDist = 5;
-                    miniEnemys = enemy;
-                }
-            }
-
-
-            // 轉向它
-            if (miniEnemys)
-            {
-                miniEnemys.transform.localScale = new Vector3(2, 2, 2);
-            }
-            */
-
             // 射擊
             Fire();
 
