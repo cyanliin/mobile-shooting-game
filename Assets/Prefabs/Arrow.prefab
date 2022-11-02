@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6399810468496159489}
   - component: {fileID: 4422160305827589051}
   - component: {fileID: 409823279449691542}
-  - component: {fileID: 4072543352687628866}
   - component: {fileID: 7761839600796797760}
   m_Layer: 0
   m_Name: Cylinder
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4072543352687628866
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3784634536861268957}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!96 &7761839600796797760
 TrailRenderer:
   serializedVersion: 2
@@ -218,9 +203,10 @@ GameObject:
   - component: {fileID: 6777070624520225243}
   - component: {fileID: 3332793181433353768}
   - component: {fileID: 7887740421481487250}
+  - component: {fileID: 3726153348598887477}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  atk: 50
 --- !u!54 &7887740421481487250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -270,3 +257,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &3726153348598887477
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6133920634788951114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.075951695
+  m_Height: 1.0884615
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
