@@ -18,4 +18,15 @@ public class Bullet : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // 如果碰撞到的是子彈
+        if (other.tag == "Enemy")
+        {
+            // 刪除自己
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
 }

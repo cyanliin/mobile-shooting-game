@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         // 如果碰撞到的是子彈
         if (other.tag == "Bullet")
         {
-            // 刪除
+            // 刪除自己
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
